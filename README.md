@@ -30,3 +30,262 @@ Queries
 Mutations
 Subscriptions
 Resolvers
+
+## 4. What is Query and Mutation in GraphQL?
+
+In GraphQL:
+
+READ → Query
+CREATE/UPDATE/DELETE → Mutation
+
+```
+
+type User {
+    id: ID!
+    name: String!
+    age: Int!
+}
+
+type Query {
+    getUser(id: ID!): User
+    getAllUsers: [User]
+}
+
+type Mutation {
+    createUser(input: UserInput!): User
+    updateUser(id: ID!, input: UserInput!): User
+    deleteUser(id: ID!): String
+}
+
+input UserInput {
+    name: String!
+    age: Int!
+}
+```
+## 5. What is Query? How do we fetch or get data in graphQL?
+Query Section (READ)
+
+```
+type Query {
+    getUser(id: ID!): User
+    getAllUsers: [User]
+}
+```
+## 6. What is Mutation ?
+
+```
+type Mutation {
+    createUser(input: UserInput!): User
+    updateUser(id: ID!, input: UserInput!): User
+    deleteUser(id: ID!): String
+}
+```
+
+Used for:
+
+create
+update
+delete
+
+## 7. Show an example of GraphQL create operation/mutation?
+
+```
+mutation {
+  createUser(input: {
+    name: "Priyanka",
+    age: 25
+  }) {
+    id
+    name
+    age
+  }
+}
+```
+
+Response
+```
+{
+  "data": {
+    "createUser": {
+      "id": "1",
+      "name": "Priyanka",
+      "age": 25
+    }
+  }
+}
+```
+## Spring Boot Resolver  
+
+```
+@MutationMapping
+public User createUser(@Argument UserInput input) {
+
+    User user = new User();
+    user.setName(input.getName());
+    user.setAge(input.getAge());
+
+    return userRepository.save(user);
+}
+```
+
+## Flow
+```
+Client Mutation
+↓
+Resolver
+↓
+Database Insert
+↓
+Response Returned
+```
+
+## Step 3: READ Operation
+
+Fetch user data.
+
+Get Single User
+Query
+
+```
+query {
+  getUser(id: 1) {
+    id
+    name
+    age
+  }
+}
+```
+Response:-
+
+```
+{
+  "data": {
+    "getUser": {
+      "id": "1",
+      "name": "Priyanka",
+      "age": 25
+    }
+  }
+}
+```
+## Resolver 
+```
+@QueryMapping
+public User getUser(@Argument Long id) {
+    return userRepository.findById(id).orElse(null);
+}
+```
+## Get All Users
+Query
+```
+query {
+  getAllUsers {
+    id
+    name
+    age
+  }
+}
+```
+## Resolver
+```
+@QueryMapping
+public List<User> getAllUsers() {
+    return userRepository.findAll();
+}
+```
+
+## Step 4: UPDATE Operation
+
+Modify existing user.
+
+Mutation
+```
+mutation {
+  updateUser(
+    id: 1,
+    input: {
+      name: "Priya",
+      age: 26
+    }
+  ) {
+    id
+    name
+    age
+  }
+}
+```
+Response
+```
+{
+  "data": {
+    "updateUser": {
+      "id": "1",
+      "name": "Priya",
+      "age": 26
+    }
+  }
+}
+```
+## Resolver
+
+```
+@MutationMapping
+public User updateUser(@Argument Long id,
+                       @Argument UserInput input) {
+
+    User user = userRepository.findById(id)
+                    .orElseThrow();
+
+    user.setName(input.getName());
+    user.setAge(input.getAge());
+
+    return userRepository.save(user);
+}
+```
+## Step 5: DELETE Operation
+
+Remove user.
+
+Mutation
+```
+mutation {
+  deleteUser(id: 1)
+}
+```
+
+Response  
+```
+{
+  "data": {
+    "deleteUser": "User deleted successfully"
+  }
+}
+```
+## Resolver
+```
+@MutationMapping
+public String deleteUser(@Argument Long id) {
+
+    userRepository.deleteById(id);
+
+    return "User deleted successfully";
+}
+```
+## Complete Spring Boot Flow
+```
+Frontend / Postman / GraphiQL
+↓
+GraphQL Query
+↓
+Spring GraphQL Controller
+↓
+Resolver Method
+↓
+Service Layer
+↓
+Repository
+↓
+Database
+```
+
+
