@@ -287,5 +287,19 @@ Repository
 ↓
 Database
 ```
+## Explain all GraphQL Annotations
+
+| Annotation             | Purpose                      |
+| ---------------------- | ---------------------------- |
+| `@Controller`          | Marks GraphQL controller     |
+| `@QueryMapping`        | Handles query operations     |
+| `@MutationMapping`     | Handles mutation operations  |
+| `@SubscriptionMapping` | Handles subscriptions        |
+| `@SchemaMapping`       | Resolves nested fields       |
+| `@Argument`            | Reads GraphQL arguments      |
+| `@BatchMapping`        | Batch field resolution       |
+| `@ContextValue`        | Access GraphQL context       |
+| `@ProjectedPayload`    | Projection interface support |
+
 
 
