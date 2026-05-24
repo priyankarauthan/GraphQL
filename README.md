@@ -302,4 +302,19 @@ Database
 | `@ProjectedPayload`    | Projection interface support |
 
 
+## What is a GraphQL Resolver?
+
+In GraphQL, a resolver is:
+
+A Java method/function that fetches data for a GraphQL query, mutation, or field.
+
+Simple meaning:
+
+Resolvers connect:
+
+GraphQL schema
+to
+actual Java code/business logic
+
+
 
