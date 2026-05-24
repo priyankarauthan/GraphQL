@@ -20,3 +20,13 @@ Fewer network calls
 Strongly typed schema
 Better frontend flexibility
 Easier API evolution
+## 3. What are the main components of GraphQL?
+
+Main components:
+
+Schema
+Types
+Queries
+Mutations
+Subscriptions
+Resolvers
