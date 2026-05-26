@@ -114,7 +114,18 @@ Response
   }
 }
 ```
-## Spring Boot Resolver  
+
+## 7. What are Resolvers?
+
+Resolvers are methods/functions that fetch the actual data for GraphQL fields.
+
+In Spring Boot:
+```
+@QueryMapping
+public List<Employee> employees() {
+    return service.getAllEmployees();
+}
+```
 
 ```
 @MutationMapping
