@@ -155,6 +155,24 @@ Under-fetching
 Multiple API calls
 API evolution issues
 
+## 11.What are GraphQL Fragments?
+
+Fragments allow reuse of query fields.
+
+Example:
+```
+fragment EmployeeFields on Employee {
+   id
+   name
+}
+
+query {
+   employees {
+      ...EmployeeFields
+   }
+}
+```
+
 ## Flow
 ```
 Client Mutation
