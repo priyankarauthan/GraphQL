@@ -173,6 +173,19 @@ query {
 }
 ```
 
+## 12. What are Variables in GraphQL?
+
+Variables allow dynamic values in queries.
+
+Example:
+```
+query GetEmployee($id: ID!) {
+   employee(id: $id) {
+      name
+   }
+}
+```
+
 ## Flow
 ```
 Client Mutation
