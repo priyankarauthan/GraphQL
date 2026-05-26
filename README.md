@@ -115,7 +115,7 @@ Response
 }
 ```
 
-## 7. What are Resolvers?
+## 8. What are Resolvers?
 
 Resolvers are methods/functions that fetch the actual data for GraphQL fields.
 
@@ -138,6 +138,22 @@ public User createUser(@Argument UserInput input) {
     return userRepository.save(user);
 }
 ```
+
+## 9. What is Subscription in GraphQL?
+
+Subscriptions provide real-time updates using WebSockets.
+
+Example use cases:
+
+Chat applications
+Live stock prices
+Notifications
+
+## 10. What problem does GraphQL solve?
+Over-fetching
+Under-fetching
+Multiple API calls
+API evolution issues
 
 ## Flow
 ```
