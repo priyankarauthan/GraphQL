@@ -375,4 +375,28 @@ to
 actual Java code/business logic
 
 
+## Subscription
+
+In GraphQL, a Subscription is used for real-time communication between client and server.
+
+It allows the server to automatically send updated data to clients whenever an event happens, instead of the client repeatedly calling APIs.
+
+Most commonly, subscriptions use WebSockets.
+
+## Mono vs Flux
+
+Mono represents 0 or 1 asynchronous result, while Flux represents 0 to N asynchronous results/events.
+
+And
+Mono -> means single stream/item
+Flux -> means multiple items or continuous stream.
+
+Examples:
+
+Mono<Employeee> -> Fetch one employee
+Flux<Employee> -> Fetch all employees
+
+
+
+
 
